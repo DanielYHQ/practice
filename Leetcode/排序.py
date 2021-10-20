@@ -1,6 +1,24 @@
 
 
+def quick(arr, l, r):
+    if l>=r:
+        return
+    low, high = l, r
+    key = arr[l]
+    while low < high:
+        while low<high and arr[high]>=key:
+            high -= 1
+        arr[low] = arr[high]
+        while low<high and arr[low]<key:
+            low += 1
+        arr[high]= arr[low]
+    arr[low] = key
+    quick(arr, l, low-1)
+    quick(arr, low+1, r)
 
+arr = [1, 4,3, 2, 5]
+quick(arr, 0, len(arr)-1)
+print(arr)
 class GuiBing:
     def sort(self, arr):
         tmp = [ 0 for _ in range(len(arr))]
